@@ -1,0 +1,27 @@
+#home-container { 
+    padding: 30px;
+}
+#home-container #span-title-container{ 
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+#home-container #span-title-container svg{ 
+    display: inline;
+    font-size: 25px;
+    border: 1px solid;
+}
+
+#home-container #span-title-container h1{ 
+    display: inline;
+    font-size: 40px;
+    color: #002554;
+    font-weight: 700;
+    margin: 5px 0 10px 20px;
+}
+
+#home-container #news-main-img img{
+    border: 15px solid rgba(0,0,0,.78);
+ }
+
