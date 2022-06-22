@@ -10,7 +10,7 @@
     "lint:test": "node_modules/.bin/eslint **/*.js --ignore-path .eslintignore"
   },
   "engines": {
-    "node": "6.11.1"
+    "node": "16.15.1"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
