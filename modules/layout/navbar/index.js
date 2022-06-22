@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
 import Image from 'next/image'
-import visionImg from '../../../public/assets/images/1610107750384.jpg'
 import { FaSortDown } from 'react-icons/fa'
 import { RiFoldersFill } from 'react-icons/ri'
 import { MdOutlineDarkMode } from 'react-icons/md'
@@ -10,6 +9,7 @@ import { FiSun } from 'react-icons/fi'
 
 const Navbar = () => {
   const mode = Router?.router?.query?.mode
+
   return (
     <nav className={`flex justify-between p-6 ${mode === 'dark' ? 'dark' : ''}`}>
       
@@ -59,7 +59,7 @@ const Navbar = () => {
     </li>
 
     <li className='mx-4'>
-      <Image width={50} height={50} src={visionImg} alt='2030 vision img' />
+      {/* <Image width={50} height={50} src={visionImg} alt='2030 vision img' /> */}
     </li>
     </ul>
     </nav>

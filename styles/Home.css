@@ -66,9 +66,6 @@
     min-height: 100px;
     margin-left: 50px;
  }
-#home-container #comment-input::placeholder {
-    color: #fff;
- }
 
 #home-container .comments {
     position: relative;
@@ -181,3 +178,7 @@
     background: transparent;
     color: #fff;
 }
+
+.dark #home-container #comment-input::placeholder {
+    color: #fff;
+ }
