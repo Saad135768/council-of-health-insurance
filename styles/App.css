@@ -27,4 +27,42 @@ p {
   margin: 0;
 } */
 
+/* Navbar */
 
+nav ul {
+  display: flex;
+}
+
+li {
+  list-style: none;
+}
+
+nav ul li a {
+  display: flex;
+  align-items: baseline;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+nav ul li a:hover {
+  opacity: .8;
+}
+nav ul li svg {
+  display: inline;
+}
+
+nav #ul-blog li{
+  color: #AE1C1C;
+}
+
+nav #ul-blog li svg{
+  color: #002554;
+  margin-right: 5px;
+}
+
+ /* Dark Theme */
+
+ .dark {
+  background-color: #1E1E1E;
+  color: #fff;
+ }

@@ -1,74 +1,157 @@
 import React, { useEffect, useState } from 'react'
 import { MdOutlineSort } from 'react-icons/md'
+import Router from 'next/router'
 import Image from 'next/image'
 import img from '../../public/assets/images/bg-img.bmp'
 import axios from 'axios'
 import { propOr } from 'ramda'
+import ClipLoader from 'react-spinners/ClipLoader'
+import Rating from 'react-rating-stars-component'
+
+const API_LINK = 'https://62b06de0e460b79df04599f2.mockapi.io/News'
 
 const Home = () => {
-    const API_LINK = 'https://62b06de0e460b79df04599f2.mockapi.io/News'
+  const mode = Router?.router?.query?.mode
 
-    const [loading, setLoading] = useState()
-    const [News, setNews] = useState()
+  const [loading, setLoading] = useState()
+  const [inputValue, setInputValue] = useState('')
+  const [News, setNews] = useState()
 
-    const fetchData = async () => {
-        try {
-            setLoading(true)
-            const { data } = await axios(API_LINK)
-            console.log(data)
-            
-            // This is to select a single article randaomly on each refresh
-            const randomIndex = Math.ceil(Math.random() * data.length)
-            setNews(data[randomIndex])
-            setLoading(false)
-        }
-        catch(error) {
-            setLoading(false)
-            console.error(error)
-        }
-      }
+  const handleChange = e => {
+    setInputValue(e.target.value)
+  }
+
+  const handleAddComment = async () => {
+    try {
+      // This is to post to the APIS the new comment
+      if(inputValue?.trim()) {
+      const { data } = await axios.put(`${API_LINK}/${News['_id']}`, {
+        comments: [
+          ...News.comments,
+          {
+            commentator: inputValue.charAt(0),
+            comment: inputValue,
+            rating: Math.ceil(Math.random() * 5),
+          },
+        ],
+      })
+
+      setNews(data)
+      setInputValue('')
+    }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const fetchData = async () => {
+    try {
+      setLoading(true)
+      const { data } = await axios(API_LINK)
+
+      // This is to select a single article randaomly on each refresh
+      const randomIndex = Math.ceil(Math.random() * data.length)
+      setNews(data[randomIndex])
+      setLoading(false)
+
+    } catch (error) {
+      setLoading(false)
+      console.error(error)
+    }
+  }
 
   useEffect(() => {
     fetchData()
   }, [])
-console.log(loading)
+
+  // This function takes the date and format it into the required form
+  const formatDate = () => {
+    const monthsNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ]
+    const date = propOr(new Date(), ['date_of_publication'], News)
+    const year = new Date(date)?.getFullYear()
+    const month = monthsNames[new Date(date)?.getMonth()]?.toUpperCase()
+    const day = new Date(date)?.getDate()?.toString().padStart(2, '0')
+
+    return ` ${month} ${day}, ${year}`
+  }
+
   return (
-    <section id="home-container">
-      {!loading &&
-      <>
-      <span id="span-title-container">
-        <MdOutlineSort />
-        <h1>
-          {propOr('', ['title'], News)}
-        </h1>
-      </span>
+    <section id="home-container" className={mode === 'dark' ? 'dark' : ''}>
+      {!loading && (
+        <>
+          <span id="span-title-container">
+            <span className='relative'>
+              <span id='span-extension' />
+              <MdOutlineSort />
+            </span>
+            <h1>{propOr('', ['title'], News)}</h1>
+          </span>
 
-      <p>
-        Date of publication{' '}
-        <span>
-          {propOr(new Date(), ['date_of_publication'], News).toLocaleString('en-us', {
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-        })}
-        </span>
-      </p>
+          <p id="p-date">
+            Date of publication:
+            <span>{formatDate()}</span>
+          </p>
 
-      <img
-        height={300}
-        width={1100}
-        src={propOr(img, ['img'], News)}
-        id="news-main-img"
-        />
+          <div className={'flex justify-center'}>
+            <img
+              height={200}
+              width={1200}
+              src={propOr(img, ['img'], News)}
+              id="news-main-img"
+            />
+          </div>
+          <p id="p-article"> {propOr('', ['content'], News)} </p>
 
-      <p> {propOr('', ['content'], News)} </p>
+        <div>
+          <input
+            placeholder="Add a comment"
+            id="comment-input"
+            value={inputValue}
+            onChange={handleChange}
+          />
+
+          <div className="flex justify-end" id="save-btn-container">
+            <button id="save-comment-btn" onClick={handleAddComment}>
+              Save
+            </button>
+          </div>
+
+          {propOr([], ['comments'], News).map(
+            ({ commentator, rating, comment, _id }) => (
+              <div className="mt-3" key={_id}>
+                <span id="commentator">
+                  {commentator?.charAt(0)?.toUpperCase()}
+                </span>
+                  <div className='comments'>
+                    {comment}
+                  <span id="rating-container">
+                    {/* The rating logic here, is to retrieve the first number only, since the numbers generated by the mockApi website are large numbers*/}
+                    <Rating size={20} value={rating % 10} edit={false} />
+                  </span>
+                    </div>
+              </div>
+            ))}
+        </div>
         </>
-    }
+      )}
 
-    {loading && <h2>Loading....</h2>}
-
-      <input placeholder="Add a comment" />
-      <button>Save</button>
+      {/* Loader */}
+      {loading && <div className="flex justify-center my-3">
+        <ClipLoader loading={loading} size={200} />
+      </div>}
     </section>
   )
 }
