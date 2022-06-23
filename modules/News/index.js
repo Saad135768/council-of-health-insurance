@@ -1,67 +1,51 @@
 import React from 'react'
+import Router from 'next/router'
 import { BsListUl } from 'react-icons/bs'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import Slider from 'react-slick'
-import img from '../../public/assets/images/bg-img.bmp'
-import Image from 'next/image'
+import { MdOutlineSort, MdOutlineSportsKabaddi } from 'react-icons/md'
+import { BiMapAlt } from 'react-icons/bi'
+import { GiTronArrow } from 'react-icons/gi'
+import { settings, Svg, articleImg0, articleImg1, articleImg2, articleImg3, articleImg4, articleImg5, articleImg6 } from '../../constants'
 
 const News = () => {
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-          dots: true
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  }
+  const mode = Router?.router?.query?.mode
   return (
-    <div>
-      <section>
-        <Image height={200} width={200} layout='responsive' src={img} />
-        <h3>News</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in .
-        </p>
+    <div id='news-container' className={mode === 'dark' ? 'dark' : ''}>
+
+      <section className={`flex justify-around p-8 ${mode === 'dark' ? '' : 'mt-6'}`} id='headline-section-container'>
+          {Svg(mode === 'dark')}
+
+        <aside id="headline-container">
+          <span className='relative'>
+            <span id='span-extension' />
+            <MdOutlineSort />
+          </span>
+
+          <h1>News</h1>
+          <p>
+            Lorem ipsum dolor sit amet, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in.
+          </p>
+        </aside>
+
       </section>
 
-      <section>
-        <div>
-          <span>
-            |<h2>Last News</h2>
+
+      <section id='slider-section-container'>
+
+        <div className='flex my-8 justify-between items-center'>
+          <span className='span-title-container relative'>
+            <span />
+            <h2>Last News</h2>
             <p>June 20, 2022</p>
           </span>
 
-          <div>
+          <div id='view-btns-container'>
+
             <button>
               <BsListUl /> List View
             </button>
@@ -70,48 +54,113 @@ const News = () => {
           </div>
         </div>
 
-        <Slider {...settings}>
-          <div>
-            <div>
-              <Image height={50} width={50} layout='responsive' src={img} />
+
+        <Slider {...settings} id='slider' className='my-6 p-7'>
+          <div className='relative'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             </div>
-            <div>
-              <Image height={50} width={50} layout='responsive' src={img} />
+            <img src={articleImg2} />
+          </div>
+
+          <div className='relative'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             </div>
-            <div>
-              <Image height={50} width={50} layout='responsive' src={img} />
+            <img src={articleImg0} />
+          </div>
+
+          <div className='relative'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             </div>
-            <div>
-              <Image height={50} width={50} layout='responsive' src={img} />
+            <img src={articleImg3} />
+          </div>
+
+          <div className='relative'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             </div>
+            <img src={articleImg4} />
+          </div>
+
+          <div className='relative'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            </div>
+            <img src={articleImg5} />
+          </div>
+
+          <div className='relative'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            </div>
+            <img src={articleImg1} />
+          </div>
+
+          <div className='relative'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            </div>
+            <img src={articleImg6} />
           </div>
         </Slider>
+
       </section>
 
-      <section>
-        <span>
-          |<h2>News by category</h2>
-        </span>
+      <section id='news-by-category-container'>
+        <div className='flex my-8 justify-between'>
+          <span className='span-title-container relative'>
+            <span />
+            <h2>News by cateogry</h2>
+          </span>
 
-        <div>
-          <button>
-            <AiOutlineArrowRight /> View all filters
-          </button>
+            <button>
+              <AiOutlineArrowRight /> View all filters
+            </button>
+
         </div>
-        <ul>
-          <li>Saudi Arabia</li>
-          <li>Economy</li>
-          <li>Sports</li>
+
+        <ul id='breadcrumbs' className='flex'>
+          <li>
+            <BiMapAlt />  Saudi Arabia
+          </li>
+
+          <li>
+           <GiTronArrow /> Economy
+          </li>
+          <li>
+            <MdOutlineSportsKabaddi />  Sports
+          </li>
         </ul>
-        <span>
-          <div>
-            <Image height={200} width={200} layout='responsive' src={img} />
+
+        <span className='flex'>
+
+          <div className='relative' id='main-img'>
+            <div className='overlay'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            </div>
+            <img src={articleImg3} />
           </div>
 
-          <div>
-            <Image height={200} width={200} layout='responsive' src={img} />
-            <Image height={200} width={200} layout='responsive' src={img} />
+          <div id='secondary-images'>
+
+            <div className='relative'>
+              <div className='overlay'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              </div>
+              <img src={articleImg4} />
+            </div>
+
+            <div className='relative'>
+              <div className='overlay'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              </div>
+              <img src={articleImg5} />
+            </div>
+
           </div>
+
         </span>
       </section>
     </div>

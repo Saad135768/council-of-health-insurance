@@ -2,12 +2,14 @@ import React from 'react'
 import Head from 'next/head'
 import '../styles/App.css'
 import '../styles/Home.css'
+import '../styles/News.css'
 import Navbar from '../modules/layout/navbar'
 
 const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
+        {/* Needed imports for the slider library */}
       <link
           rel="stylesheet"
           type="text/css"

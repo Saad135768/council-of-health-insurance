@@ -2,7 +2,7 @@ const withImages = require('next-images')
 
 module.exports = withImages({
   images: {
-    domains: ['http://loremflickr.com'],
+    domains: ['http://loremflickr.com', 'https:/www.nicepng.com', 'https://www.reuters.com'],
     disableStaticImages: true
   },
   reactStrictMode: true,

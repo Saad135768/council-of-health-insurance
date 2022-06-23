@@ -14,12 +14,33 @@ const Home = () => {
   const mode = Router?.router?.query?.mode
 
   const [loading, setLoading] = useState()
-  const [inputValue, setInputValue] = useState('')
   const [News, setNews] = useState()
+  const [inputValue, setInputValue] = useState('')
 
   const handleChange = e => {
     setInputValue(e.target.value)
   }
+
+
+  const fetchData = async () => {
+    try {
+      setLoading(true)
+      const { data } = await axios(API_LINK)
+
+      // This is to select a single article randaomly on each refresh
+      const randomIndex = Math.ceil(Math.random() * data.length)
+      setNews(data[randomIndex])
+      setLoading(false)
+
+    } catch (error) {
+      setLoading(false)
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const handleAddComment = async () => {
     try {
@@ -43,26 +64,6 @@ const Home = () => {
       console.error(error)
     }
   }
-
-  const fetchData = async () => {
-    try {
-      setLoading(true)
-      const { data } = await axios(API_LINK)
-
-      // This is to select a single article randaomly on each refresh
-      const randomIndex = Math.ceil(Math.random() * data.length)
-      setNews(data[randomIndex])
-      setLoading(false)
-
-    } catch (error) {
-      setLoading(false)
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
 
   // This function takes the date and format it into the required form
   const formatDate = () => {
@@ -89,7 +90,7 @@ const Home = () => {
   }
 
   return (
-    <section id="home-container" className={mode === 'dark' ? 'dark' : ''}>
+    <div id="home-container" className={mode === 'dark' ? 'dark' : ''}>
       {!loading && (
         <>
           <span id="span-title-container">
@@ -152,7 +153,7 @@ const Home = () => {
       {loading && <div className="flex justify-center my-3">
         <ClipLoader loading={loading} size={200} />
       </div>}
-    </section>
+    </div>
   )
 }
 
