@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { MdOutlineSort } from 'react-icons/md'
 import Router from 'next/router'
-import Image from 'next/image'
-import img from '../../public/assets/images/bg-img.bmp'
 import axios from 'axios'
 import { propOr } from 'ramda'
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -110,7 +108,7 @@ const Home = () => {
             <img
               height={200}
               width={1200}
-              src={propOr(img, ['img'], News)}
+              src={propOr('', ['img'], News)}
               id="news-main-img"
             />
           </div>

@@ -24,6 +24,7 @@ A semi-dynamic News app. Where you can add a comment and fetch different news ar
 - Separate components are prepared for every section
 - Every page holds its own index and styling file
 - All styling files are in the styles folder
+- MockApi has been used for creating dummy data; where a new article is being rendered on every refresh to the home page 'https://mockapi.io'
 - constant file hold some of the variables; aiming to make the component clean.
 - Optimzation and best practices were implemented.
 
