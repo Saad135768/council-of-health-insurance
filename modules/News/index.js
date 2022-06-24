@@ -6,14 +6,14 @@ import Slider from 'react-slick'
 import { MdOutlineSort, MdOutlineSportsKabaddi } from 'react-icons/md'
 import { BiMapAlt } from 'react-icons/bi'
 import { GiTronArrow } from 'react-icons/gi'
-import { settings, Svg, articleImg0, articleImg1, articleImg2, articleImg3, articleImg4, articleImg5, articleImg6 } from '../../constants'
+import { settings, Svg, articleImg0, articleImg1, articleImg2, articleImg3, articleImg4, articleImg5, articleImg6, articleImg7 } from '../../constants'
 
 const News = () => {
   const mode = Router?.router?.query?.mode
   return (
     <div id='news-container' className={mode === 'dark' ? 'dark' : ''}>
 
-      <section className={`flex justify-around p-8 ${mode === 'dark' ? '' : 'mt-6'}`} id='headline-section-container'>
+      <section className={`flex justify-around p-8 container ${mode === 'dark' ? '' : 'mt-6'}`} id='headline-section-container'>
           {Svg(mode === 'dark')}
 
         <aside id="headline-container">
@@ -36,6 +36,7 @@ const News = () => {
 
 
       <section id='slider-section-container'>
+<div className='container'>
 
         <div className='flex my-8 justify-between items-center'>
           <span className='span-title-container relative'>
@@ -55,7 +56,7 @@ const News = () => {
         </div>
 
 
-        <Slider {...settings} id='slider' className='my-6 p-7'>
+        <Slider {...settings} id='slider' className='my-6 py-7 px-2'>
           <div className='relative'>
             <div className='overlay'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -105,10 +106,11 @@ const News = () => {
             <img src={articleImg6} />
           </div>
         </Slider>
+</div>
 
       </section>
 
-      <section id='news-by-category-container'>
+      <section id='news-by-category-container' className='container'>
         <div className='flex my-8 justify-between'>
           <span className='span-title-container relative'>
             <span />
@@ -134,13 +136,13 @@ const News = () => {
           </li>
         </ul>
 
-        <span className='flex'>
+        <span className='flex justify-between'>
 
           <div className='relative' id='main-img'>
             <div className='overlay'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             </div>
-            <img src={articleImg3} />
+            <img src={articleImg7} />
           </div>
 
           <div id='secondary-images'>

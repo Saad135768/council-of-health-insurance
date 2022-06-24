@@ -11,9 +11,9 @@ import SideNavbar from './mobileNavbar'
 const Navbar = () => {
   const mode = Router?.router?.query?.mode
   return (
-    <>
+    <div className={`${mode === 'dark' ? 'dark' : ''}`}>
       <nav
-        className={`flex justify-between p-6 navbar ${mode === 'dark' ? 'dark' : ''}`}
+        className={`flex justify-between py-6 px-2 navbar container ${mode === 'dark' ? 'dark' : ''}`}
       >
         <ul id="ul-blog">
           <li className="flex justify-around items-center">
@@ -80,7 +80,7 @@ const Navbar = () => {
       </nav>
 
       <SideNavbar />
-    </>
+    </div>
   )
 }
 

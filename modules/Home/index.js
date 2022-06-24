@@ -89,6 +89,7 @@ const Home = () => {
 
   return (
     <div id="home-container" className={mode === 'dark' ? 'dark' : ''}>
+      <div className='container'>
       {!loading && (
         <>
           <span id="span-title-container">
@@ -146,6 +147,7 @@ const Home = () => {
         </div>
         </>
       )}
+      </div>
 
       {/* Loader */}
       {loading && <div className="flex justify-center my-3">
