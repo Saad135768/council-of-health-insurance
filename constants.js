@@ -34,8 +34,8 @@ export const settings = {
     ],
   }
   
-  export const lightVisionImg = 'https://upload.wikimedia.org/wikipedia/ar/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png'
-  export const darkVisionImg = 'https://p7.hiclipart.com/preview/261/752/840/saudi-vision-2030-crown-prince-of-saudi-arabia-council-of-economic-and-development-affairs-logo-2030-thumbnail.jpg'
+  export const lightVisionIcon = 'https://upload.wikimedia.org/wikipedia/ar/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png'
+  export const darkVisionIcon = 'https://p7.hiclipart.com/preview/261/752/840/saudi-vision-2030-crown-prince-of-saudi-arabia-council-of-economic-and-development-affairs-logo-2030-thumbnail.jpg'
 
 
   export const articleImg0 = 'https://www.reuters.com/resizer/scnSFraWkmuBwFW9ViPEYqAXarc=/960x0/filters:quality(80)/cloudfront-us-east-2.images.arcpublishing.com/reuters/BI2Z4I2M7VJCJHPDP4CZ5KBW2U.jpg'

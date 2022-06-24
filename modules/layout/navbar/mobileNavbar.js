@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Router from 'next/router'
-import { darkVisionImg, lightVisionImg } from '../../../constants'
+import { darkVisionIcon, lightVisionIcon } from '../../../constants'
 import { FaSortDown } from 'react-icons/fa'
 import { RiFoldersFill } from 'react-icons/ri'
 import { MdOutlineDarkMode } from 'react-icons/md'
@@ -114,14 +114,14 @@ const SideNavbar = () => {
               <img
                 width={50}
                 height={50}
-                src={darkVisionImg}
+                src={darkVisionIcon}
                 alt="2030 vision img"
               />
             ) : (
               <img
                 width={50}
                 height={50}
-                src={lightVisionImg}
+                src={lightVisionIcon}
                 alt="2030 vision img"
               />
             )}
